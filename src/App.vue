@@ -24,7 +24,7 @@ export default {
         body: '{}',
         headers
       })).json()).uri.split('/').pop()
-      history.replaceState('', '', this.id)
+      location.hash = this.id
       this.isLoading = false
     } else {
       this.allData = await (await fetch(apiUrl + this.id)).json()
@@ -33,7 +33,7 @@ export default {
   },
   data () {
     return {
-      id: location.pathname.substr(1),
+      id: location.hash.substr(1),
       allData: {},
       isLoading: true
     }
